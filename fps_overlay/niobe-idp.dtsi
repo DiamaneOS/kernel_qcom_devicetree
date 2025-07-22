@@ -135,30 +135,11 @@
 	};
 };
 
-&usb1 {
-	usb-role-switch;
-	port {
-		usb_port1: endpoint {
-			remote-endpoint = <&usb_port1_connector>;
-		};
-	};
-};
-
 &ucsi {
-	connector@0 {
-		reg = <0>;
+	connector {
 		port {
 			usb_port0_connector: endpoint {
 				remote-endpoint = <&usb_port0>;
-			};
-		};
-	};
-
-	connector@1 {
-		reg = <1>;
-		port {
-			usb_port1_connector: endpoint {
-				remote-endpoint = <&usb_port1>;
 			};
 		};
 	};
@@ -172,7 +153,7 @@
 };
 
 &ufsphy_mem {
-	compatible = "qcom,ufs-phy-qmp-v4-niobe";
+	compatible = "qcom,ufs-phy-qmp-v4-pineapple";
 
 	/* VDDA_UFS_CORE */
 	vdda-phy-supply = <&L3C>;

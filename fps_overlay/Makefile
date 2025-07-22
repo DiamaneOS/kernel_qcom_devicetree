@@ -11,8 +11,8 @@ add-overlays = $(foreach o,$1,$(foreach b,$2,$(eval $(basename $b)-$(basename $o
 # see DTB_TYPES from scripts/Makefile.dtbinst and install_dtbs from build.config.msm.common
 #
 
-PINEAPPLE_BASE_DTB += pineapple-v2.dtb pineapple-qcm.dtb
-PINEAPPLE_APQ_BASE_DTB += pineapplep-v2.dtb pineapplep-sg-v2.dtb pineappleq-v2.dtb pineapplep-qcs.dtb
+PINEAPPLE_BASE_DTB += pineapple.dtb pineapple-v2.dtb
+PINEAPPLE_APQ_BASE_DTB += pineapplep.dtb pineapplep-v2.dtb
 
 PINEAPPLE_BOARDS += \
 		 pineapple-mtp-overlay.dtbo \
@@ -28,6 +28,8 @@ PINEAPPLE_BOARDS += \
 		 pineapplep-aim500-overlay.dtbo \
 		 pineapplep-aim500-v2-overlay.dtbo
 
+NOAPQ_PINEAPPLE_BOARDS += \
+		 pineapple-rumi-overlay.dtbo
 
 pineapple-dtb-$(CONFIG_ARCH_PINEAPPLE) += \
 	$(call add-overlays, $(PINEAPPLE_BOARDS) $(NOAPQ_PINEAPPLE_BOARDS),$(PINEAPPLE_BASE_DTB))\
@@ -54,26 +56,25 @@ CLIFFS_BOARDS += \
 		 cliffs-rcm-fhdp-kiwi-overlay.dtbo \
 		 cliffs-rcm-qhdp-kiwi-overlay.dtbo
 
+NOAPQ_CLIFFS_BOARDS += \
+		 cliffs-rumi-overlay.dtbo
+
 pineapple-dtb-$(CONFIG_ARCH_CLIFFS) += \
 	$(call add-overlays, $(CLIFFS_BOARDS) $(NOAPQ_CLIFFS_BOARDS),$(CLIFFS_BASE_DTB))\
 	$(call add-overlays, $(CLIFFS_BOARDS),$(CLIFFS_APQ_BASE_DTB))
 pineapple-overlays-dtb-$(CONFIG_ARCH_CLIFFS) += $(CLIFFS_BOARDS) $(NOAPQ_CLIFFS_BOARDS) $(CLIFFS_BASE_DTB) $(CLIFFS_APQ_BASE_DTB)
 
-VOLCANO_BASE_DTB += volcano.dtb volcano6.dtb volcano6i-fp1.dtb volcano6i-fp2.dtb volcano6i-fp3.dtb volcano6i-fp4.dtb
-VOLCANO_APQ_BASE_DTB += volcano6p.dtb volcano6ip-fp1.dtb volcano6ip-fp2.dtb volcano6ip-fp3.dtb volcano6ip-fp4.dtb volcanop.dtb
+VOLCANO_BASE_DTB += volcano.dtb volcano6.dtb volcano6i.dtb
+VOLCANO_APQ_BASE_DTB += volcano6p.dtb volcano6ip.dtb
 
 VOLCANO_BOARDS += \
 		volcano-atp-overlay.dtbo \
 		volcano-idp-overlay.dtbo \
-		volcano-idp-evros-overlay.dtbo \
 		volcano-idp-wcd9395-overlay.dtbo \
-		volcano-idp-wcd9395-evros-overlay.dtbo \
 		volcano6i-idp-wcd9395-ganges-overlay.dtbo \
 		volcano6i-idp-wcd9395-brahma-overlay.dtbo \
 		volcano-mtp-overlay.dtbo \
 		volcano-mtp-wcd9395-aatc-overlay.dtbo \
-		volcano-mtp-wcd9395-aatc-evros-overlay.dtbo \
-		volcano-mtp-wcd9378-hsj-evros-overlay.dtbo \
 		volcano-mtp-pm7550ba-overlay.dtbo \
 		volcano6i-mtp-wcd9395-ganges-overlay.dtbo \
 		volcano6i-mtp-ganges-overlay.dtbo \
@@ -83,8 +84,10 @@ VOLCANO_BOARDS += \
 		volcano6i-mtp-wcd9395-moselle-overlay.dtbo \
 		volcano6i-mtp-moselle-wingmate-overlay.dtbo \
 		volcano-qrd-overlay.dtbo \
-		volcano6i-qrd-moselle-overlay.dtbo \
-		volcano6i-mtp-STSafe320-brahma-overlay.dtbo
+		volcano6i-qrd-moselle-overlay.dtbo
+
+NOAPQ_VOLCANO_BOARDS += \
+		volcano-rumi-overlay.dtbo
 
 pineapple-dtb-$(CONFIG_ARCH_VOLCANO) += \
 	$(call add-overlays, $(VOLCANO_BOARDS) $(NOAPQ_VOLCANO_BOARDS),$(VOLCANO_BASE_DTB))\

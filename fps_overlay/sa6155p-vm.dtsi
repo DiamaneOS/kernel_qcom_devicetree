@@ -9,7 +9,7 @@
 
 	aliases {
 		hsuart0 = &qupv3_se7_4uart;
-		mmc1 = &sdhc_2; /* SDC2 SD Card slot */
+		sdhc2 = &sdhc_2; /* SDC2 SD Card slot */
 	};
 
 	cpus {
@@ -259,7 +259,8 @@
 		compatible = "qcom,msm-rng";
 		reg = <0x793000 0x1000>;
 		qcom,no-qrng-config;
-		qcom,no-clock-support;
+		clocks = <&gcc GCC_PRNG_AHB_CLK>;
+		clock-names = "km_clk_src";
 	};
 
 	pdc: interrupt-controller@b220000 {
@@ -269,16 +270,6 @@
 		#interrupt-cells = <2>;
 		interrupt-parent = <&intc>;
 		interrupt-controller;
-	};
-
-	ptp_virtual {
-		compatible = "qcom,ptp_virtual";
-		reg = <0xf5600000 0x1000>,
-				<0x20b0c 0x1000>,
-				<0x17c23000 0x1000>;
-		reg-names = "ptp_carveout_mem",
-			"ptp_reg",
-			"qtimer_reg";
 	};
 
 	sdhc_2: sdhci@8804000 {
